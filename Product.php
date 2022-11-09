@@ -14,4 +14,4 @@
     public function find($id){
         return Product::PRODUCTS[$id-1];
     }
-    }
+    } //fin clase
