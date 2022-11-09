@@ -1,4 +1,5 @@
 <?php
+    require_once "Product.php"; //para una clase require once 
     class Controller{
         function __construct()
         {
@@ -12,7 +13,7 @@
 
         public function home(){
             $products = Product::all();
-            require "home.php";
+            require "views/home.php";
         }
 
         /* funcion que:
@@ -23,5 +24,6 @@
         public function show(){
             $id = $_GET["id"];
             $product = Product::find($id);
+            require "views/show.php";
         }
     }
