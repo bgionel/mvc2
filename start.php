@@ -1,27 +1,40 @@
 <?php
-    //echo "<h2>Contenido PRIVADO</h2>";
+    /*echo "<h2>Contenido Privado</h2>";*/
+
     // /recurso/accion/parametro
-        //recurso : controlador
-        // accion : metodos del controlador . controlador -> show()
-        // parametros : posibles parametros . find -> id de producto.
-    require_once "../Controller.php";
+        //recurso: controladores
+        //accion: metodos de los controladores
+        //parametros: find->ide de producto
+    
+    require "core/App.php";
 
-    $app = new Controller(); 
-    //defino variable de peticion en la url 
+    $app = new App();
+
+    /*$app = new Controller();
+
+    //llamar a los métodos del controlador 
 
 
-    // 1- recoger el metodo que pasan como parametro y si no especifican ninguno 
-    // cargar el metodo home
+    //1 - recoger el metodo que pasan como parametro y si no
+    //especifican ningun cargar el metodo home
+    
     if(isset($_GET["method"])){
-        $method = $_GET["method"]; //show, find, create...
-    } else {
-        $method = "home";
+        $method = $_GET["method"]; //show, find, create,  update
+        
+    }
+    else{
+        $method= "home";
     }
 
-    // 2- verificar que el metodo introducido existe
+    //2 - verificar que el metodo introducido existe
     if(method_exists($app, $method)){
         $app->$method();
-    } else {
-        http_response_code(404);
-        die("Metodo no encontrado"); //acaba la ejecucion del programa y muestra un mensaje
     }
+    else{
+        //devuelve el codigo de respuesta que tu le digas
+        http_response_code(404);
+        die("Método no encontrado"); //exit //acaba la ejecucion del programa y muestra un mensaje
+    }
+
+    */
+	
