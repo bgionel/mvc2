@@ -14,6 +14,7 @@
             else{
                 $url = "home";
             }
+
             //  /product/show/5 -> product : recurso  ; show: accion ; 5: parametro
             $arguments = explode('/', trim($url,'/'));
 
@@ -32,10 +33,11 @@
             }
 
             //voy a cargar el controlador. ProductController.php
-            $file = "app/controllers/$controllerName" . "php";
+            $file = "../app/controllers/$controllerName" . ".php";
 
             //verificar que un fichero existe 
             if(file_exists($file)){
+
                 require_once $file; //importo el fichero si existe
             }
             else{
