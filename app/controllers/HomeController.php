@@ -16,6 +16,7 @@
 
         function home(){
             echo "<br>Dentro de show de HOMECONTROLLER";
+            
         } //fin del metodo show
 
     } //fin clase

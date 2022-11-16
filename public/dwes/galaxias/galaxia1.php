@@ -20,4 +20,6 @@ class Galaxia{
     function __toString(){
         return "esto son galaxias superiores";
     }
+
+    //Apodar namespace -> alias 
 } //fin clase
