@@ -1,9 +1,11 @@
 <?php
-namespace Dwes\Galaxias;
-const RADIO = 1.25;
+namespace Dwes\Galaxias\Pegaso;
+const RADIO = 0.75;
+
 function observar($mensaje){
-    echo "<br> Estoy mirando a la galaxia " . $mensaje;
+    echo "<br> Estoy DIRIGIENDOME a la galaxia " . $mensaje;
 }
+
 class Galaxia{
 
     function __construct(){
@@ -11,9 +13,9 @@ class Galaxia{
     }
 
     function nacimiento(){
-        echo "<br> Soy una nueva galaxia";
+        echo "<br> Soy una GALAXIA NUEVA";
     }
     public static function muerte(){
-        echo "<br> Me destruyo!!";
+        echo "<br> Me ESTOY DESTRUYENDO!";
     }
 } //fin clase

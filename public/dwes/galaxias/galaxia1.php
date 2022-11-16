@@ -16,4 +16,8 @@ class Galaxia{
     public static function muerte(){
         echo "<br> Me destruyo!!";
     }
+
+    function __toString(){
+        return "esto son galaxias superiores";
+    }
 } //fin clase
