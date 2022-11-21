@@ -45,7 +45,7 @@
                 die("No encontrado");
             }
 
-
+            $controllerName = "\\App\\Controllers\\$controllerName";
             //existe el metodo en el controlador? 
             $controllerObject = new $controllerName; //objeto de la clase ($controllerName)
 
