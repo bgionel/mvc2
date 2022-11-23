@@ -1,7 +1,9 @@
 <?php   
     namespace App\Controllers;
     use App\Models\Product;
-    class ProductController{
+use Dompdf\Dompdf;
+
+class ProductController{
         
         function __construct()
         {
@@ -27,6 +29,11 @@
         } //fin del metodo show
 
         public function pdf(){
-            $product = 
+            $dompdf = new Dompdf();
+            $dompdf->loadHtml('<h1>Hola mundo</h1>');
+            header("Content-type: application/pdf");
+            header("Content-Disposition: inline; filename=documento.pdf");
+            $dompdf->render();
+            $dompdf->stream();
         }
     } //fin clase
