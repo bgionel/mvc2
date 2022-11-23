@@ -1,9 +1,9 @@
 {
-    "name": "root/mvc18",
+    "name": "alumno/mvc",
     "authors": [
         {
-            "name": "Rafa Cabeza",
-            "email": "rafacabeza@gmail.com"
+            "name": "Bianca Ionel",
+            "email": "biancagionel@gmail.com"
         }
     ],
     "require": {

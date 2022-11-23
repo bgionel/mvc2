@@ -1,6 +1,6 @@
 <?php   
     namespace App\Controllers;
-    use \App\Models\Product;
+    use App\Models\Product;
     class ProductController{
         
         function __construct()
@@ -26,4 +26,7 @@
             require "../views/show.php";
         } //fin del metodo show
 
+        public function pdf(){
+            $product = 
+        }
     } //fin clase
