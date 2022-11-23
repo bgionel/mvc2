@@ -1,6 +1,8 @@
 <?php
     namespace App\Models;
     // fichero que simula el modelo con datos
+    use PDO;
+    use Core\Model;
     class Product{
         const PRODUCTS = [
             array(1,'Cortacesped'),
