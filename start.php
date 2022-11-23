@@ -1,12 +1,12 @@
 <?php
     /*echo "<h2>Contenido Privado</h2>";*/
-
+    use \Core\App;
     // /recurso/accion/parametro
         //recurso: controladores
         //accion: metodos de los controladores
         //parametros: find->ide de producto
     
-    require "core/App.php";
+    require "vendor/autoload.php";
 
     $app = new \Core\App();
 
