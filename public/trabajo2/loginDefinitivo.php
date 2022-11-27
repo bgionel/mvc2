@@ -1,20 +1,36 @@
-<?php 
-        function comprobarCredenciales($usuario, $passwd){
-            if($usuario === "normaluser" && $passwd=== "usudwes"){
+<?php
+    
+    if (!empty($_POST['usuario'])) {
+        $user = $_POST['usuario'];
+    }
+    if (!empty($_POST['password'])) {
+        $passwd  = $_POST['password'];
+    }
+    function validarPassword(){
+        require "funciones/conexionAgenda.php"; //conectamos con la base de datos
+        $credenciales= $bd->query("SELECT * FROM credenciales WHERE usuario = '$user'")->fetchAll(); //ejecutamos la consulta 
+        foreach($credenciales as $credencial){                                                       //y guardamos todos los valores en $credenciales
+            $contrasenya = $credencial['password'];
+            if(password_verify($passwd, $contrasenya)){ //verificamos si la contraseña introducida 
+                return true;                            //por el usuario y la encriptada obtenida de la base de datos son iguales
+            }
+        }
+    }
+        function comprobarCredenciales($usuario){
+            if($usuario === "normaluser" && validarPassword()){
                 $credenciales["usuario"] = "normaluser";
                 return $credenciales;
             }
 
-            if($usuario === "adminuser" && $passwd=== "admindwes"){
+            if($usuario === "adminuser" && validarPassword()){
                 $credenciales["usuario"] = "adminuser";
                 return $credenciales;
             }
             return false;
         } //funcion
-
         if($_SERVER["REQUEST_METHOD"] === "POST"){ //Si el metodo con el que recojo los datos es post
             if(isset($_POST["envio"])){  //Si esta establecida la variable envio
-                $credentials = comprobarCredenciales($_POST["usuario"],$_POST["password"]); //la funcion devuelve array o falso.
+                $credentials = comprobarCredenciales($_POST["usuario"]); //la funcion devuelve array o falso.
                 if($credentials === false){ // si la comprobacion devuelve falso
                     $error = 1; //el codigo de error es 1
                 } else {
@@ -25,6 +41,7 @@
             }
         } //if
 
+        
 ?>
 
 <!DOCTYPE html>
