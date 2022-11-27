@@ -1,10 +1,11 @@
-<?php
+<?php 
 
-try
+    try
   {
     require "funciones/conexionAgenda.php";
-    $sql = 'SELECT * FROM persona';
-    $resultado = $bd->query($sql);
+    $sql = 'SELECT * FROM empresa';
+    $sentencia= $bd->prepare($sql);
+    $sentencia->execute();
   }
   catch(Exception $e)
     {
@@ -13,62 +14,104 @@ try
 
 ?>
 
-
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8">
     <title>Agenda PHP</title>
-    <link rel="stylesheet" href="css/estilos.css" media="screen">
+    <link rel="stylesheet" href="css/estilos.css">
   </head>
   <body>
-    <div class="contenedor">
-      <h1>Agenda de Contactos</h1>
-
-      <div class="contenido">
-        <h2>Nueva Contacto de Persona</h2>
-        <form action="crear.php" method="post">
-          <div class="campo">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-          </div>
-          <div class="campo">
-            <label for="numero">Numero</label>
-            <input type="text" name="numero" id="numero" placeholder="Numero Telefonico">
-          </div>
-          <input type="submit" value="Agregar">
-        </form>
-      </div>
-      <div class="contenido existentes">
+      <h1>Agenda de Empresas</h1>
         <h2>Contactos Existentes</h2>
-        <p>
-          Número de contactos: <?php echo $resultado->num_rows;?>
-        </p>
         <table>
-          <thead>
             <tr>
               <th>Nombre</th>
-              <th>Apellidos</th>
               <th>Dirección</th>
               <th>Teléfono</th>
-              <th>Editar</th>
-              <th>Borrar</th>
+              <th>email</th>
             </tr>
-          </thead>
-          <tbody>
-            <?php while($registros = $resultado->fetchAll(PDO::FETCH_OBJ) ) {?>
-              <tr >
-                <td><?php echo $registros['Nombre']; ?></td>
-                <td><?php echo $registros['Telefono']; ?></td>
-                <td><a href="editar.php?id=<?php echo $registros['id']; ?>">Editar</a></td>
-                <td ><a class="borrar" href="borrar.php?id=<?php echo $registros['id']; ?>">Borrar</a></td>
-              </tr>
-            <?php } ?>
-          </tbody>
+            <tr>
+                <td>
+                    <?php 
+                    $empresas= $bd->query('SELECT * FROM empresa')->fetchAll();
+                    foreach($empresas as $empresa) {
+                        echo $empresa['nombre'] . "<br>";
+                    }?>
+                </td>
+                <td>
+                    <?php 
+                    $empresas= $bd->query('SELECT * FROM empresa')->fetchAll();
+                    foreach($empresas as $empresa) {
+                        echo $empresa['direccion'] . "<br>";
+                    }?>
+                </td>
+                <td>
+                    <?php 
+                    $empresas= $bd->query('SELECT * FROM empresa')->fetchAll();
+                    foreach($empresas as $empresa) {
+                        echo $empresa['telefono'] . "<br>";
+                    }?>
+                </td>
+                <td>
+                <?php 
+                    $empresas= $bd->query('SELECT * FROM empresa')->fetchAll();
+                    foreach($empresas as $empresa) {
+                        echo $empresa['email'] . "<br>";
+                    }?>
+                </td>
+            </tr>
         </table>
-      </div>
-    </div>
+
+        <h2>Agregar un contacto</h2>
+        <form action="empresa/insertar.php" method="post">
+            <p><label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            </p>
+            <p><label for="direccion">Direccion</label>
+            <input type="text" name="direccion" placeholder="direccion" required>    
+            </p>
+            <p><label for="telefono">Telefono</label>
+            <input type="text" name="telefono" placeholder="telefono" required>    
+            </p>
+            <p><label for="email">email</label>
+            <input type="text" name="email" placeholder="email" required>    
+            </p>
+          <input type="submit" name="agregar" value="Agregar contacto">
+        </form>
+        <h2>Buscar un contacto</h2>
+        <form action="empresa/buscar.php" method="post">
+            <p><label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            </p>
+            <input type="submit" name="buscar" value="Buscar contacto">
+        </form>
+        <h2>Borrar un contacto</h2>
+        <form action="empresa/borrar.php" method="post">
+            <p><label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            </p>
+            <input type="submit" name="borrar" value="Borrar contacto">
+        </form>
+        <h2>Actualizar un contacto</h2>
+        <form action="empresa/actualizar.php" method="post">
+            <p><label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            </p>
+            <p><label for="email">email</label>
+            <input type="text" name="email" placeholder="email" required>    
+            </p>
+            <p><label for="direccion">Direccion</label>
+            <input type="text" name="direccion" placeholder="direccion" required>    
+            </p>
+            <p><label for="telefono">Telefono</label>
+            <input type="text" name="telefono" placeholder="telefono" required>    
+            </p>
+            <input type="submit" name="actualizar" value="Actualizar contacto">
+        </form>
+        
+        <p><a href="principal.php">Volver atrás</a>
+        <p><a href="persona.php">Agenda de Personas</a>
   </body>
 </html>

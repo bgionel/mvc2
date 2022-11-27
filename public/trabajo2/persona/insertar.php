@@ -11,13 +11,14 @@
     if (isset($_POST['telefono'])) {
         $telefono = $_POST['telefono'];
     }
+    //comprobamos si tenemos todos los datos para insertar
     try
     {
       
-      require "../funciones/conexionAgenda.php";
-      $sql = "INSERT INTO `persona` (`nombre`, `apellidos`, `direccion`, `telefono`) VALUES ('$nombre','$apellidos','$direccion','$telefono')";
+      require "../funciones/conexionAgenda.php"; 
+      $sql = "INSERT INTO `persona` (`nombre`, `apellidos`, `direccion`, `telefono`) VALUES ('$nombre','$apellidos','$direccion','$telefono')"; 
       $sentencia= $bd->prepare($sql);
-      $sentencia->execute();
+      $sentencia->execute(); //ejecutamos la sentencia
       echo "El contacto ha sido insertado con éxito, <a href='../persona.php'>vuelve atrás</a> para confirmar";
     }
     catch(Exception $e)

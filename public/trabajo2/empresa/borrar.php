@@ -5,10 +5,10 @@
     try
     {
       require "../funciones/conexionAgenda.php";
-      $sql = "DELETE FROM `persona` WHERE `nombre`= '$nombre'";
+      $sql = "DELETE FROM `empresa` WHERE `nombre`= '$nombre'";
       $sentencia= $bd->prepare($sql);
       $sentencia->execute();
-      echo "El contacto ha sido borrado con éxito, <a href='../persona.php'>vuelve atrás</a> para confirmar";
+      echo "El contacto ha sido borrado con éxito, <a href='../empresa.php'>vuelve atrás</a> para confirmar";
     }
     catch(Exception $e)
       {

@@ -25,10 +25,9 @@
                     header("Location: principal.php");
                 }
             }
-        }
+        } //if
 
 ?>
-<!--este trozo de codigo de arriba solo se ejecuta cuando le das a submit-->
 
 <!DOCTYPE html>
 <html lang="en">

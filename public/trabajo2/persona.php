@@ -23,9 +23,7 @@
     <link rel="stylesheet" href="css/estilos.css">
   </head>
   <body>
-    <div class="contenedor">
-      <h1>Agenda de Contactos</h1>
-      <div class="contactos existentes">
+      <h1>Agenda de Personas</h1>
         <h2>Contactos Existentes</h2>
         <table>
             <tr>
@@ -65,7 +63,6 @@
                 </td>
             </tr>
         </table>
-      </div>
 
         <h2>Agregar un contacto</h2>
         <form action="persona/insertar.php" method="post">
@@ -83,7 +80,13 @@
             </p>
           <input type="submit" name="agregar" value="Agregar contacto">
         </form>
-
+        <h2>Buscar un contacto</h2>
+        <form action="persona/buscar.php" method="post">
+            <p><label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            </p>
+            <input type="submit" name="buscar" value="Buscar contacto">
+        </form>
         <h2>Borrar un contacto</h2>
         <form action="persona/borrar.php" method="post">
             <p><label for="nombre">Nombre</label>
@@ -109,7 +112,6 @@
         </form>
         
         <p><a href="principal.php">Volver atrás</a>
-      </div>
-    </div>
+        <p><a href="empresa.php">Agenda de Empresas</a>
   </body>
 </html>
