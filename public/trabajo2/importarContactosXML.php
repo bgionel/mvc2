@@ -1,9 +1,9 @@
 <?php 
-    require "conexionAgenda.php";
-    $fichero = simplexml_load_file("agenda.xml");
-        foreach($fichero->children() as $fila){
-            $atributo= $fila->attributes();
-            if($atributo == 'persona'){
+    require "conexionAgenda.php"; //conexión a la base de datos Agenda
+    $fichero = simplexml_load_file("agenda.xml"); // cargamos el fichero agenda.xml
+        foreach($fichero->children() as $fila){ // recorremos todos los hijos del xml (serían los contactos)
+            $atributo= $fila->attributes(); // obtenemos el atributo del contacto (que es de tipo persona o empresa) 
+            if($atributo == 'persona'){ // si el contacto es de tipo persona insertamos en la tabla persona
                 $nombre=$fila->nombre;
                 $apellidos=$fila->apellidos;
                 $direccion=$fila->direccion;
@@ -13,8 +13,8 @@
                 . $direccion . "','" . $telefono . "');");
                 $sentencia->execute();
                 
-            }
-            if($atributo == 'empresa'){
+            } //fin if
+            if($atributo == 'empresa'){ // si el contacto es de tipo empresa insertamos en la tabla empresa
                 $nombre=$fila->nombre;
                 $direccion=$fila->direccion;
                 $telefono=$fila->telefono;
@@ -24,24 +24,6 @@
                 . $telefono . "','" . $email . "');");
                 $sentencia->execute();
                 
-            }
-        }
+            } //fin if
+    } //fin foreach
     echo "Contactos insertados en la base de datos con éxito.";
-    
-    
-    /* cargar archivo xml con simplexml_load_file();
-    require conexionbbdd.php
-    if($bd->execute($sentencia) === TRUE){
-        echo "exito"; 
-    }
-
-    recorres con un for each los hijos del xml
-    $fichero ->children() as $fila 
-     $atributo = $fila -> attributes(); 
-     if($atributo['tipo'] === 'persona'){
-
-     }
-     if($atributo['tipo'] === 'persona'){
-
-     }
-    */
