@@ -1,37 +1,12 @@
-<?php
-    /* usuario: normaluser ; password: usudwes
-       usuario: useruser ; password: admindwes
-       hash(normaluser) $2y$10$kG2p/4hVn6sZKNsTo6Je4uWWdO4cqZii2MBm2LPNuaes3cbNI.os2
-       hash(adminuser) $2y$10$73wSQqyAYSbk3YSJ1K0Yu.Tyo0xNvPcPCupGArTRwX5D1jQVzJZO2
-    */
-    //password_hash('usudwes');
-    require "conexionAgenda.php";
-        $hash = '$2y$10$kG2p/4hVn6sZKNsTo6Je4uWWdO4cqZii2MBm2LPNuaes3cbNI.os2';
-            $sql = "SELECT * FROM credenciales";
-            $sentencia = $bd->prepare($sql);
-            $sentencia -> setFetchMode(PDO::FETCH_ASSOC);
-            $sentencia -> execute();
-            $sentencia ->fetch();
-            $credenciales = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-            
-        foreach($credenciales as $credencial){
-            echo "<br> NOMBRE : " . $credencial->usuario;
-            echo "<br> CONTRASEÑA : " . $credencial->password;
-        }
-        if (password_verify('usudwes', $hash)) {
-        echo 'Password is valid!';
-        } else {
-        echo 'Invalid password.';
-        }
-        
-        function comprobarCredenciales($usuario, $clave){
-            if($usuario === "normaluser" && $clave === "1234"){
+<?php 
+        function comprobarCredenciales($usuario, $passwd){
+            if($usuario === "normaluser" && $passwd=== "usudwes"){
                 $credenciales["usuario"] = "normaluser";
                 $credenciales["rol"] = 0;
                 return $credenciales;
             }
 
-            if($usuario === "adminuser" && $clave === "4567"){
+            if($usuario === "adminuser" && $passwd=== "admindwes"){
                 $credenciales["usuario"] = "adminuser";
                 $credenciales["rol"] = 1;
                 return $credenciales;
@@ -51,6 +26,7 @@
                 }
             }
         }
+
 ?>
 <!--este trozo de codigo de arriba solo se ejecuta cuando le das a submit-->
 
@@ -60,10 +36,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h2>Página de acceso</h2>
+    <h2>Pagina de acceso</h2>
     <?php 
         if(isset($error) && $error == 1){
             echo "<p><font color=\"red\">Credenciales invalidas.</font></p>";
